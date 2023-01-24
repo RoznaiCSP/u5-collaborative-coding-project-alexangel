@@ -1,5 +1,5 @@
 // Don't forget to comment your code as you work!
-let mySprite = sprites.create(img`
+let mySprite2 = sprites.create(img`
     . . . . . . . . . . b 5 b . . . 
     . . . . . . . . . b 5 b . . . . 
     . . . . . . b b b b b b . . . . 
