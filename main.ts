@@ -15,5 +15,5 @@ let mySprite2 = sprites.create(img`
     c b 5 5 b c d d 5 5 5 5 5 5 b . 
     b b c c c d d d 5 5 5 5 5 d b . 
     . . . . c c d d d 5 5 5 b b . . 
-    . . . . . . c c c c c b b . . . 
+    . . . . . . c 4 c c 4 b b . . . 
     `, SpriteKind.Player)
