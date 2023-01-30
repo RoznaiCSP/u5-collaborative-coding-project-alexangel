@@ -1,14 +1,48 @@
-let mySprite = 0
-// This function is to tell clue to players where the keys are.
-function greet (SpriteKind2: Sprite) {
-    mySprite2.sayText(":)")
-    pause(100)
+namespace SpriteKind {
+    export const BOT = SpriteKind.create()
+    export const KEY = SpriteKind.create()
+    export const Door = SpriteKind.create()
 }
-// Thiis greet to jonsy and give a clue 
-sprites.onOverlap(mySprite, SpriteKind.Player, function (sprite, otherSprite) {
-	
+sprites.onOverlap(SpriteKind.Player, SpriteKind.BOT, function (sprite, otherSprite) {
+    greet()
 })
+// This function is to tell clue to players where the keys are.
+function greet () {
+    mySprite2.sayText(":)")
+    pause(1000)
+}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Door, function (sprite, otherSprite) {
+    escapeRoom()
+})
+function escapeRoom () {
+    info.setScore(0)
+    score = info.score()
+    if (score == 3) {
+        mySprite = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . e e e e e e e e e e . . . 
+            . . . e e e e e e e e e e . . . 
+            . . . e e e 1 e 1 e 1 e e . . . 
+            . . . e e e 1 e 1 e 1 e e . . . 
+            . . . e e e 1 e 1 e 1 e e . . . 
+            . . . e e e 1 e 1 e 1 e e . . . 
+            . . . e e e 1 e 1 e 1 f f . . . 
+            . . . e e e 1 e 1 e 1 f f . . . 
+            . . . e e e 1 e 1 e 1 e e . . . 
+            . . . e e e 1 e 1 e 1 e e . . . 
+            . . . e e e 1 e 1 e 1 e e . . . 
+            . . . e e e 1 e 1 e 1 e e . . . 
+            . . . e e e e e e e e e e . . . 
+            . . . e e e e e e e e e e . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Door)
+        mySprite.destroy()
+    }
+}
+let mySprite: Sprite = null
+let score = 0
 let mySprite2: Sprite = null
+tiles.setCurrentTilemap(tilemap`level0`)
 // Don't forget to comment your code as you work!
 let Jonnsy = sprites.create(img`
     . . . . . . . . . . b 5 b . . . 
@@ -28,7 +62,9 @@ let Jonnsy = sprites.create(img`
     . . . . c c d d d 5 5 5 b b . . 
     . . . . . . c c c c c b b . . . 
     `, SpriteKind.Player)
+Jonnsy.setPosition(38, 24)
 controller.moveSprite(Jonnsy)
+scene.cameraFollowSprite(Jonnsy)
 let KEY = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -46,7 +82,7 @@ let KEY = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
+    `, SpriteKind.KEY)
 KEY.setPosition(10, 0)
 mySprite2 = sprites.create(img`
     ........................
@@ -73,5 +109,5 @@ mySprite2 = sprites.create(img`
     ........................
     ........................
     ........................
-    `, SpriteKind.Player)
-mySprite2.setPosition(10, 40)
+    `, SpriteKind.BOT)
+mySprite2.setPosition(27, 21)
